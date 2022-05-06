@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Contact } from '../contact.model';
+import { Component, Input, OnInit } from '@angular/core'
+import { Contact } from '../contact.model'
 
 @Component({
   selector: 'cms-contact-detail',
   templateUrl: './contact-detail.component.html',
-  styleUrls: ['./contact-detail.component.css']
+  styleUrls: ['./contact-detail.component.css'],
 })
 export class ContactDetailComponent implements OnInit {
-  contactDetail: Contact;
+  @Input() contactDetail: Contact
   // contactDetail: Contact = new Contact('1', 'R. Kent Jonhsson', 'jackson@byui.edu', '208-496-3771', '../../assets/images/jacksonk.jpg', null)
   //   ;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

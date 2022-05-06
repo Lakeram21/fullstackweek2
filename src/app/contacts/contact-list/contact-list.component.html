@@ -1,29 +1,17 @@
-<!-- <p>
-    <a href="#" class="" *ngFor="let contact of contacts">
-        <img [src]="contact?.imageUrl" [alt]="contact?.name" *ngIf="contact?.name">
-        <h4>{{contact?.name}}</h4>
-    </a>
-</p> -->
-
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>Contact</h3>
-        <button class="btn btn-success pull-right newContact">New Contact</button>
+  <div class="panel-heading">
+    <h3>Contact</h3>
+    <button class="btn btn-success pull-right newContact">New Contact</button>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <cms-contact-item
+          *ngFor="let contactEl of contacts"
+          [contact]="contactEl"
+          (contactSelected)="onContactSelected(contactEl)"
+        ></cms-contact-item>
+      </div>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-xs-12">
-                <a href="#" class="list-group-item clearfix" *ngFor="let contact of contacts">
-                    <div class="pull-left">
-                        <h4 class="list-group-item-heading">{{contact.name}}</h4>
-                    </div>
-                    <span class="pull-right">
-                        <img src="{{contact.imageUrl}}" [alt]="contact?.name" *ngIf="contact?.name"
-                            class="img-responsive" style="max-height: 50px;">
-                    </span>
-                </a>
-                <!-- <app-recipe-item></app-recipe-item> -->
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
