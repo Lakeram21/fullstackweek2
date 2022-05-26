@@ -16,5 +16,7 @@ export class ContactsComponent implements OnInit {
     this.contactService.contactSelectedEvent.subscribe( (contact:Contact)=>{
         this.selectedContact = contact;
       })
+
+    
   }
 }
