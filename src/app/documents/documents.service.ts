@@ -30,10 +30,10 @@ constructor() {
   * ***************************************/
   getDocument(id:string)
   {
-    for(let contact of this.documents){
-       if(contact.id == id)
+    for(let doc of this.documents){
+       if(doc.id == id)
        {
-         return contact
+         return doc
        }
      }
      return null;
