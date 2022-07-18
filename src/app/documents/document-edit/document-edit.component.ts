@@ -34,6 +34,7 @@ export class DocumentEditComponent implements OnInit, OnDestroy {
         }
       
         this.originalDocument= this.documentService.getDocument(this.id);
+
         console.log(this.originalDocument)
        if(this.originalDocument == null)
        {
@@ -41,13 +42,8 @@ export class DocumentEditComponent implements OnInit, OnDestroy {
        }
 
       this.editMode = true;
-      console.log(this.slForm)
-      this.slForm.setValue({
-        name: this.originalDocument.name,
-        description: this.originalDocument.description,
-        url: this.originalDocument.url
-      })
-        this.document = JSON.parse(JSON.stringify(this.originalDocument));
+      
+       this.document = JSON.parse(JSON.stringify(this.originalDocument));
       })
 
   

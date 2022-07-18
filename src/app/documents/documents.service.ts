@@ -159,14 +159,16 @@ getMaxId(){
 
   sortAndSend()
   {
-    const documents = JSON.stringify(this.documents);
 
-    const headers = new HttpHeaders()
-   .set('content-type', 'application/json')
-   .set('Access-Control-Allow-Origin', '*');
+    this.documentChangedEvent.next(this.documents.slice());
+  //   const documents = JSON.stringify(this.documents);
 
-   this.http.put('http://localhost:3000/documents/', documents, {headers:headers} )
-        .subscribe(data => this.documentChangedEvent.next(this.documents.slice()) );
+  //   const headers = new HttpHeaders()
+  //  .set('content-type', 'application/json')
+  //  .set('Access-Control-Allow-Origin', '*');
+
+  //  this.http.put('http://localhost:3000/documents/', documents, {headers:headers} )
+  //       .subscribe(data => this.documentChangedEvent.next(this.documents.slice()) );
   }
 
 }

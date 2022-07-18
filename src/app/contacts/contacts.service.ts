@@ -27,7 +27,7 @@ export class ContactsService {
     //  return this.contacts.slice();
      this.http.get("http://localhost:3000/contacts")
     .subscribe((contacts:Contact[])=>{
-      console.log(contacts)
+    
       this.contacts = contacts;
       this.maxId = this.getMaxId()
       this.contactChangedEvent.next(this.contacts.slice());
@@ -41,6 +41,7 @@ export class ContactsService {
     * ***************************************/
     getContact(id:string)
     {
+      console.log(id)
       for(let contact of this.contacts){
         if(contact.id == id)
         {
@@ -155,13 +156,7 @@ export class ContactsService {
    
    sortAndSend()
   {
-    const contacts = JSON.stringify(this.contacts);
-
-    const headers = new HttpHeaders()
-   .set('content-type', 'application/json')
-   .set('Access-Control-Allow-Origin', '*');
-
-   this.http.put('http://localhost:3000/contacts/', contacts, {headers:headers} )
-        .subscribe(data => this.contactChangedEvent.next(this.contacts.slice()) );
+    
+      this.contactChangedEvent.next(this.contacts.slice());
   }
 }

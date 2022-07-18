@@ -53,7 +53,7 @@ import {HttpClientModule} from '@angular/common/http'
     HttpClientModule,
     ReactiveFormsModule,
     DndModule.forRoot(),],
-  providers: [ContactsService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

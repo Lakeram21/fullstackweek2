@@ -63,7 +63,7 @@ router.put('/:id', (req, res, next) => {
       document.url = req.body.url;
 
       Document.updateOne({id: req.params.id }, document)
-        .then(res => {
+        .then(result => {
           res.status(204).json({
             message: 'Document updated successfully'
           })
@@ -71,7 +71,7 @@ router.put('/:id', (req, res, next) => {
         .catch(error => {
            res.status(500).json({
            message: 'An error occurred',
-           error: error
+           error: error.message
          });
         });
     })

@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core'
+import { Contact } from 'src/app/contacts/contact.model'
 import { Message } from '../message.model'
 import { MessageService } from '../message.service'
 
@@ -21,7 +22,7 @@ export class MessageEditComponent implements OnInit {
   // send this ingredient to the the list component
   @Output() messageAdded = new EventEmitter<Message>()
 
-  currentSender: string = 'Lakeram'
+  currentSender: Contact;
 
   constructor(private messageService: MessageService) {}
 

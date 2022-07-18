@@ -50,15 +50,7 @@ export class ContactEditComponent implements OnInit , OnDestroy{
       // {
       //   this.groupContacts =  JSON.parse(JSON.stringify(this.orignalContact.group));
       // }
-      console.log(this.slForm)
-      this.slForm.setValue({
-        id: this.orignalContact.id,
-        name: this.orignalContact.name,
-        email: this.orignalContact.email,
-        phone: this.orignalContact.phone,
-        imageUrl: this.orignalContact.imageUrl,
-        group: this.orignalContact.group
-      })
+      
       
       })
 

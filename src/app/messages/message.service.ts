@@ -1,27 +1,29 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Message } from './message.model';
-import { MOCKMESSAGES } from './MOCKMESSAGES';
+// import { MOCKMESSAGES } from './MOCKMESSAGES';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
  messageChanged = new EventEmitter<Message[]>();
+ messageChangedEvent = new Subject<Message[]>();
  private messages:Message[]=[];
  maxMessageId: number;
   constructor(private http: HttpClient) { 
-    this.messages = MOCKMESSAGES;
+    // this.messages = MOCKMESSAGES;
   }
 
   getMessages(){
     // return this.messages.slice();
-     this.http.get("https://cmsproject-35804-default-rtdb.firebaseio.com/messages.json")
+     this.http.get("http://localhost:3000/messages")
     .subscribe((messages:Message[])=>{
       console.log(messages)
       this.messages = messages;
       this.maxMessageId = this.getMaxId()
-      this.messageChanged.emit(this.messages.slice())
+      this.messageChangedEvent.next(this.messages.slice())
 
     }, (error) =>{
       console.log(error)
@@ -43,8 +45,28 @@ export class MessageService {
 
    addMessage(message:Message)
    {
-     this.messages.push(message);
-     this.storeMessage()
+      if (!message) {
+      return;
+    }
+
+    // make sure id of the new Document is empty
+    message.id = '';
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    // add to database
+    this.http.post<{ mess: string, message: Message }>('http://localhost:3000/messages/',
+      message,
+      { headers: headers })
+      .subscribe(
+        (responseData) => {
+          // add new document to documents
+          this.messages.push(responseData.message);
+          this.sortAndSend();
+          // storeDocument()
+
+        }
+      );
 
    }
 
@@ -76,8 +98,13 @@ export class MessageService {
    .set('content-type', 'application/json')
    .set('Access-Control-Allow-Origin', '*');
 
-   this.http.put('https://cmsproject-35804-default-rtdb.firebaseio.com/messages.json', messages, {headers:headers} )
+   this.http.put('http://localhost:3000/messages/', messages, {headers:headers} )
         .subscribe(data => this.messageChanged.emit(this.messages.slice()) );
   }
 
+  sortAndSend()
+  {
+
+    this.messageChangedEvent.next(this.messages.slice());
+  }
 }

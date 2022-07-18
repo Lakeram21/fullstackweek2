@@ -55,7 +55,7 @@ router.post('/', (req, res, next) => {
  * UPDATING A DOCUMENT
  *****************************************************************/
 router.put('/:id', (req, res, next) => {
-  Contact.findOne({_id: req.params.id })
+  Contact.findOne({id: req.params.id })
     .then(contact => {
       contact.name = req.body.name;
       contact.email = req.body.email;
@@ -65,7 +65,7 @@ router.put('/:id', (req, res, next) => {
     
 
       Contact.updateOne({ id: req.params.id }, contact)
-        .then(res => {
+        .then(result => {
           res.status(204).json({
             message: 'Contact updated successfully'
           })

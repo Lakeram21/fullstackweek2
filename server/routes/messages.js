@@ -6,18 +6,12 @@ const Message = require('../models/messages');
 
 router.get('/', (req, res, next) => {
    
-    Message.find().then(result=>{
-     res.status(200).json({
-        message: 'Message successfully Retrived',
-        messages: result
-      }).catch(error => {
-       res.status(500).json({
-          message: 'An error occurred',
-          error: error
-        });
-        }) 
-    })
-});
+  Message.find().
+  then(customers => {              
+     res.status(200).json(customers)
+  }).catch(err => console.log('Caught:', err.message));
+})
+
 
 /************************************************
  * CREATING A Message
