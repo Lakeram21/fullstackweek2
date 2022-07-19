@@ -23,7 +23,10 @@ export class ContactDetailComponent implements OnInit {
       (params:Params)=>{
         this.id = params['id'];
         console.log(this.id)
-        this.contactDetail = this.contactService.getContact(this.id)
+        // this.contactDetail = this.contactService.getContact(this.id)
+        this.contactService.getContact(this.id).subscribe((contact:Contact)=>{
+            this.contactDetail= contact;
+      });
         console.log(this.contactDetail);
       }
 

@@ -41,14 +41,16 @@ export class ContactsService {
     * ***************************************/
     getContact(id:string)
     {
-      console.log(id)
-      for(let contact of this.contacts){
-        if(contact.id == id)
-        {
-          return contact
-        }
-      }
-      return null;
+       return this.http.get("http://localhost:3000/contacts/"+id)
+
+      // console.log(id)
+      // for(let contact of this.contacts){
+      //   if(contact.id == id)
+      //   {
+      //     return contact
+      //   }
+      // }
+      // return null;
     }
 
     /*********************************************

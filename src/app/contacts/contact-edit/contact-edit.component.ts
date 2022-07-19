@@ -31,20 +31,27 @@ export class ContactEditComponent implements OnInit , OnDestroy{
     this.subsription = this.route.params.
      subscribe((params: Params)=>{
         this.id = params['id']
+        console.log(this.id)
         if(this.id == null)
         {
           this.editMode = false;
         }
-      
-        this.orignalContact= this.contactService.getContact(this.id);
-        console.log(this.orignalContact)
-       if(this.orignalContact == null)
-       {
-          return
-       }
+  
+        // this.orignalContact= this.contactService.getContact(this.id);
+        this.contactService.getContact(this.id).subscribe((contact:Contact)=>{
 
-      this.editMode = true;
-      this.contact = JSON.parse(JSON.stringify(this.orignalContact));
+          this.orignalContact = contact;
+          console.log(this.orignalContact)
+         
+          if(this.orignalContact == null)
+          {
+              return
+          }
+
+          this.editMode = true;
+          this.contact = JSON.parse(JSON.stringify(this.orignalContact));
+      });
+       
       
       // if(this.contact.group)
       // {

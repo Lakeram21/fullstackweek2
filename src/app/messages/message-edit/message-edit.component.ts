@@ -31,6 +31,7 @@ export class MessageEditComponent implements OnInit {
     const subJectInput = this.subjectInput.nativeElement.value
     const messageInput = this.messageInput.nativeElement.value
     const newMessage = new Message(
+      null,
       '567',
       subJectInput,
       messageInput,
